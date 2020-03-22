@@ -17,6 +17,8 @@ NEWSPIDER_MODULE = 'vacansies_hh_sj.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'
+LOG_ENABLED = True
+LOG_LEVEL = 'DEBUG'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -33,7 +35,7 @@ ROBOTSTXT_OBEY = False
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
