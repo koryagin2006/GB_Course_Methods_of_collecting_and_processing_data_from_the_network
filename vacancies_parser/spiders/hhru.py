@@ -21,15 +21,16 @@ class HhruSpider(scrapy.Spider):
             yield response.follow(link, callback=self.vacancy_parse)
 
     def vacancy_parse(self, response: HtmlResponse):
-        vacancy_name = response.xpath("//h1[@class='bloko-header-1']/text()").extract()[0]
+        vacancy_name = ''.join(response.xpath("//h1[@class='bloko-header-1']/text()").extract())
         vacancy_link = response.url
         company = ''.join(response.xpath("//span[@class='bloko-section-header-2 bloko-section-header-2_lite']/text()").extract())
-        salary = response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()[0]
+        vacancy_info_json = ''.join(response.xpath("//script[@data-name='HH/GoogleDfpService']/@data-params").extract())
+        location = ''.join(response.xpath("//div[@class='vacancy-company vacancy-company_with-logo']//p/span[1]/text()").extract())
 
         print(
             vacancy_name,
             vacancy_link,
             company,
-            salary
+            location
         )
 
