@@ -9,7 +9,8 @@ class HhruSpider(scrapy.Spider):
     start_urls = ['https://hh.ru/search/vacancy?area=1&st=searchVacancy&text=Python']
 
     def parse(self, response: HtmlResponse):
-        next_page = response.xpath("//a[@class='bloko-button HH-Pager-Controls-Next HH-Pager-Control']").extract_first()
+        next_page = response.xpath("//a[@class='bloko-button HH-Pager-Controls-Next HH-Pager-Control']/@href").extract_first()
+
         if next_page is None:
             yield
         yield response.follow(next_page, callback=self.parse)
@@ -20,6 +21,10 @@ class HhruSpider(scrapy.Spider):
             yield response.follow(link, callback=self.vacancy_parse)
 
     def vacancy_parse(self, response: HtmlResponse):
-        name = response.xpath("//h1[@class='bloko-header-1']/text()").extract()
-        salary = response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()
-        print(name, salary)
+        vacancy_name = response.xpath("//h1[@class='bloko-header-1']/text()").extract()[0]
+        vacancy_link = response.url
+        company = response.xpath("//span[@class='bloko-section-header-2 bloko-section-header-2_lite']//span/text()")
+        salary = response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()[0]
+
+
+
