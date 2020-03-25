@@ -23,8 +23,13 @@ class HhruSpider(scrapy.Spider):
     def vacancy_parse(self, response: HtmlResponse):
         vacancy_name = response.xpath("//h1[@class='bloko-header-1']/text()").extract()[0]
         vacancy_link = response.url
-        company = response.xpath("//span[@class='bloko-section-header-2 bloko-section-header-2_lite']//span/text()")
+        company = ''.join(response.xpath("//span[@class='bloko-section-header-2 bloko-section-header-2_lite']/text()").extract())
         salary = response.xpath("//span[@class='bloko-header-2 bloko-header-2_lite']/text()").extract()[0]
 
-
+        print(
+            vacancy_name,
+            vacancy_link,
+            company,
+            salary
+        )
 
