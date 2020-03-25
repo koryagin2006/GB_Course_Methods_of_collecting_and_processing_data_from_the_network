@@ -27,4 +27,4 @@ class HhruSpider(scrapy.Spider):
         vacancy_info_json = ''.join(response.xpath("//script[@data-name='HH/GoogleDfpService']/@data-params").extract())
         location = ''.join(response.xpath("//div[@class='vacancy-company vacancy-company_with-logo']//p/span[1]/text()").extract())
         # print(vacancy_name, vacancy_link, company, location)
-        yield 
+        yield
