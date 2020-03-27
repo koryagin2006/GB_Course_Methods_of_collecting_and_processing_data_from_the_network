@@ -1,5 +1,6 @@
 import time
 from selenium import webdriver  # импорт webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys  # Keys - объект, содержащий все клавиши клавиатуры
 from selenium.webdriver.support.wait import WebDriverWait
@@ -32,7 +33,25 @@ try:
 except Exception as e:
     print('Ошибка ввода пароля',e)
 
+# Листание
 
+while False:
+    try:
+        button = WebDriverWait(driver,10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden'))
+        )
+        button.send_keys(Keys.ARROW_DOWN)
+    except Exception as e:
+        print('ошибка', e)
+
+# while True:
+#     try:
+#         elem = WebDriverWait(driver, 10).until(
+#             EC.invisibility_of_element((By.CLASS_NAME, "list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden"))
+#         )
+#         elem.send_keys(Keys.ARROW_DOWN)
+#     except Exception as e:
+#         print('Ошибка прокрутки',e)
 
 # окончание листания = //a[@class='list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden']
 
