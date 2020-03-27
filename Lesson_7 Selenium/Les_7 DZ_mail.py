@@ -34,6 +34,8 @@ except Exception as e:
 
 
 
+# окончание листания = //a[@class='list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden']
 
+# list = //a[@class='llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal']
 
 # driver.quit()
