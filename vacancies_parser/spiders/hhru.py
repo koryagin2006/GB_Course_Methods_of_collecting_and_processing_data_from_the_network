@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.http import HtmlResponse
+from vacancies_parser.items import VacanciesParserItem
 
 
 class HhruSpider(scrapy.Spider):
