@@ -13,5 +13,5 @@ class VacanciesParserPipeline(object):
 
     def process_item(self, item, spider):
         collection = self.mongobase[spider.name]
-
+        collection.insert_one(item)
         return item

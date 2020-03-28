@@ -10,6 +10,7 @@ import scrapy
 
 class VacanciesParserItem(scrapy.Item):
     # define the fields for your item here like:
+    _id = scrapy.Field()
     vacancy_name = scrapy.Field()
     vacancy_link = scrapy.Field()
     company = scrapy.Field()
