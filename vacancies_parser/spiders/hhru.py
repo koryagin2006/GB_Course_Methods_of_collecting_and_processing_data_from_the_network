@@ -2,12 +2,13 @@
 import scrapy
 from scrapy.http import HtmlResponse
 from vacancies_parser.items import VacanciesParserItem
+from vacancies_parser import runner
 
 
 class HhruSpider(scrapy.Spider):
     name = 'hhru'
     allowed_domains = ['hh.ru']
-    start_urls = ['https://hh.ru/search/vacancy?area=1&st=searchVacancy&text=Python']
+    start_urls = ['https://hh.ru/search/vacancy?area=1&st=searchVacancy&text=' + runner.search_query]
 
     def parse(self, response: HtmlResponse):
         next_page = response.xpath(
