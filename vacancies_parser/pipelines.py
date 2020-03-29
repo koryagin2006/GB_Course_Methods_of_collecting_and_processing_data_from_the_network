@@ -14,5 +14,22 @@ class VacanciesParserPipeline(object):
 
     def process_item(self, item, spider):
         collection = self.mongobase[spider.name]
+
+        if spider.name == 'sjru':
+            item['currency'] = item['vacancy_info_json']['baseSalary']['currency']
+            try:
+                item['salary_min'] = item['vacancy_info_json']['baseSalary']['value']['minValue']
+            except KeyError:
+                item['salary_min'] = None
+            try:
+                item['salary_max'] = item['vacancy_info_json']['baseSalary']['value']['maxValue']
+            except KeyError:
+                item['salary_max'] = None
+
+        elif spider.name == 'hhru':
+            item['currency'] = item['vacancy_info_json']['vac_salary_cur']
+            item['salary_min'] = item['vacancy_info_json']['vac_salary_from']
+            item['salary_max'] = item['vacancy_info_json']['vac_salary_to']
+
         collection.insert_one(item)
         return item
