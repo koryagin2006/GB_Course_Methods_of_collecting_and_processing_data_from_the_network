@@ -30,11 +30,11 @@ class SjruSpider(scrapy.Spider):
         vacancy_info_json = json.loads(response.xpath("//script[@type='application/ld+json']/text()")[1].extract())
         location = ''.join(response.xpath("//span[@class='_6-z9f']//span[@class='_3mfro _1hP6a _2JVkc']/text()").extract())
 
-        print(vacancy_name, vacancy_link, company, location)
-        # yield VacanciesParserItem(
-        #     vacancy_name=vacancy_name,
-        #     vacancy_link=vacancy_link,
-        #     company=company,
-        #     vacancy_info_json=vacancy_info_json,
-        #     location=location
-        # )
+        # print(vacancy_name, vacancy_link, company, location)
+        yield VacanciesParserItem(
+            vacancy_name=vacancy_name,
+            vacancy_link=vacancy_link,
+            company=company,
+            vacancy_info_json=vacancy_info_json,
+            location=location
+        )
