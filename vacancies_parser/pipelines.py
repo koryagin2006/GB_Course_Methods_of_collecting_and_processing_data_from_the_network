@@ -6,6 +6,7 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from pymongo import MongoClient
 
+
 class VacanciesParserPipeline(object):
     def __init__(self):
         client = MongoClient('localhost', 27017)
