@@ -1,5 +1,5 @@
 import time
-from selenium import webdriver  # импорт webdriver
+from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys  # Keys - объект, содержащий все клавиши клавиатуры
@@ -7,8 +7,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-driver = webdriver.Chrome \
-    ("C:\\Users\\carne\\Desktop\\Geek Brains\\GitHub\\GB_Course_Methods_of_collecting_and_processing_data_from_the_network\\Lesson_7 Selenium\\chromedriver")
+driver = webdriver.Chrome("C:\\Users\\carne\\Desktop\\Geek "
+                          "Brains\\GitHub\\GB_Course_Methods_of_collecting_and_processing_data_from_the_network"
+                          "\\Lesson_7 Selenium\\chromedriver")
 
 driver.get('https://account.mail.ru/login')
 assert 'Авторизация' in driver.title
@@ -35,26 +36,6 @@ except Exception as e:
 
 # Листание
 
-while False:
-    try:
-        button = WebDriverWait(driver,10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, 'list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden'))
-        )
-        button.send_keys(Keys.ARROW_DOWN)
-    except Exception as e:
-        print('ошибка', e)
 
-# while True:
-#     try:
-#         elem = WebDriverWait(driver, 10).until(
-#             EC.invisibility_of_element((By.CLASS_NAME, "list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden"))
-#         )
-#         elem.send_keys(Keys.ARROW_DOWN)
-#     except Exception as e:
-#         print('Ошибка прокрутки',e)
-
-# окончание листания = //a[@class='list-letter-spinner llct list-letter-spinner_default list-letter-spinner_hidden']
-
-# list = //a[@class='llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal']
-
+mail_list = driver.find_element_by_class_name('llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal')
 # driver.quit()
