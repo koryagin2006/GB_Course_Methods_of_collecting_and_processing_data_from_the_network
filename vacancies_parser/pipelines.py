@@ -27,9 +27,22 @@ class VacanciesParserPipeline(object):
                 item['salary_max'] = None
 
         elif spider.name == 'hhru':
-            item['currency'] = item['vacancy_info_json']['vac_salary_cur']
-            item['salary_min'] = item['vacancy_info_json']['vac_salary_from']
-            item['salary_max'] = item['vacancy_info_json']['vac_salary_to']
+            if item['vacancy_info_json']['vac_salary_cur'] == '':
+                item['currency'] = None
+            elif item['vacancy_info_json']['vac_salary_cur'] == 'RUR':
+                item['currency'] = 'RUB'
+            else:
+                item['currency'] = item['vacancy_info_json']['vac_salary_cur']
+
+            if item['vacancy_info_json']['vac_salary_from'] == '':
+                item['salary_min'] = None
+            else:
+                item['salary_min'] = int(item['vacancy_info_json']['vac_salary_from'])
+
+            if item['vacancy_info_json']['vac_salary_to'] == '':
+                item['salary_max'] = None
+            else:
+                item['salary_max'] = int(item['vacancy_info_json']['vac_salary_to'])
 
         collection.insert_one(item)
         return item

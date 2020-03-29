@@ -10,6 +10,9 @@ class HhruSpider(scrapy.Spider):
     allowed_domains = ['hh.ru']
     start_urls = ['https://hh.ru/search/vacancy?area=1&st=searchVacancy&text=' + 'Python']
 
+    def __init__(self,search):
+        self.start_urls = [f'https://hh.ru/search/vacancy?area=1&st=searchVacancy&text={search}']
+
     def parse(self, response: HtmlResponse):
         next_page = response.xpath(
             "//a[@class='bloko-button HH-Pager-Controls-Next HH-Pager-Control']/@href").extract_first()
