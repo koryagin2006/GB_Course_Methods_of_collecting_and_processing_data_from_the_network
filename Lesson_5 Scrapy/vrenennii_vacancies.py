@@ -19,7 +19,7 @@ company = ''.join(response.xpath("//h2[@class='_3mfro PlM3e _2JVkc _2VHxz _3LJqf
 vacancy_info_json = json.loads(response.xpath("//script[@type='application/ld+json']/text()")[1])
 location = ''.join(response.xpath("//span[@class='_6-z9f']//span[@class='_3mfro _1hP6a _2JVkc']/text()"))
 
-
+pprint(vacancy_info_json)
 # salary_min = salary['value']['minValue']
 # salary_max = salary['value']['maxValue']
 # currency = salary['currency']
