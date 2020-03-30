@@ -6,7 +6,10 @@ from scrapy.http import HtmlResponse
 class AvitoSpider(scrapy.Spider):
     name = 'avito'
     allowed_domains = ['avito.ru']
-    start_urls = ['https://www.avito.ru/orenburg/kvartiry/prodam-ASgBAgICAUSSA8YQ?cd=1']
+    # start_urls = ['https://www.avito.ru/orenburg/kvartiry/prodam-ASgBAgICAUSSA8YQ?cd=1']
+
+    def __init__(self, search):
+        self.start_urls = [f'https://www.avito.ru/rossiya?q={search}']
 
     def parse(self, response: HtmlResponse):
         ads_link = response.xpath("//h3[@class='snippet-title']/a/@href").extract()
