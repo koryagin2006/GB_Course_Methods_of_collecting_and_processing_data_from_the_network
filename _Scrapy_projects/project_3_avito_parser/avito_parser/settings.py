@@ -11,8 +11,8 @@
 
 BOT_NAME = 'avito_parser'
 
-SPIDER_MODULES = ['avito_parser.spiders']
-NEWSPIDER_MODULE = 'avito_parser.spiders'
+SPIDER_MODULES = ['_Scrapy_projects.project_3_avito_parser.avito_parser.spiders']
+NEWSPIDER_MODULE = '_Scrapy_projects.project_3_avito_parser.avito_parser.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

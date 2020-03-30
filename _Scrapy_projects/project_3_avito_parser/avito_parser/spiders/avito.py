@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.http import HtmlResponse
-from avito_parser.items import AvitoParserItem
+from _Scrapy_projects.project_3_avito_parser.avito_parser.items import AvitoParserItem
 from scrapy.loader import ItemLoader
 
 

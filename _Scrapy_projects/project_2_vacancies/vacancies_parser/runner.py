@@ -1,8 +1,9 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 from vacancies_parser import settings
-from vacancies_parser.spiders.hhru import HhruSpider
-from vacancies_parser.spiders.sjru import SjruSpider
+from _Scrapy_projects.project_2_vacancies.vacancies_parser.spiders.hhru import HhruSpider
+from _Scrapy_projects.project_2_vacancies.vacancies_parser.spiders.sjru import SjruSpider
+
 
 if __name__ == '__main__':
     search_input = input('Please enter the search: ')

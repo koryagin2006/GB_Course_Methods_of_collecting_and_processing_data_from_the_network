@@ -17,7 +17,6 @@ class AvitoSpider(scrapy.Spider):
             yield response.follow(link, callback=self.parse_ads)
 
     def parse_ads(self, response: HtmlResponse):
-        photos = response.xpath("//div[@class='gallery-img-wrapper js-gallery-img-wrapper']//div["
-                                "@class='gallery-img-frame js-gallery-img-frame']/@data-url").extract()
+        photos = response.xpath("//div[@class='gallery-img-wrapper js-gallery-img-wrapper']//div[@class='gallery-img-frame js-gallery-img-frame']/@data-url").extract()
         name = response.xpath("//span[@class='title-info-title-text']/text()").extract_first()
         print(name, photos)
