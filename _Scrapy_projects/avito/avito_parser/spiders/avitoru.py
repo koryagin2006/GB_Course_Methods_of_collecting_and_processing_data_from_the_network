@@ -8,6 +8,9 @@ class AvitoruSpider(scrapy.Spider):
     allowed_domains = ['avito.ru']
     start_urls = ['https://www.avito.ru/rossiya/kvartiry']
 
+    def __init__(self, response: HtmlResponse):
+        start_urls = [f'https://www.avito.ru/rossiya?q={search}']
+
     def parse(self, response):
         ads_list = response.xpath("//a[@class='snippet-link']/@href").extract()
         for link in ads_list:
