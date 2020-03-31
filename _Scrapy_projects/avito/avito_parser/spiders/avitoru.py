@@ -7,7 +7,7 @@ from avito_parser.items import AvitoParserItem
 class AvitoruSpider(scrapy.Spider):
     name = 'avitoru'
     allowed_domains = ['avito.ru']
-    start_urls = ['']
+    start_urls = ['https://www.avito.ru/rossiya?q=диван']
 
     def __init__(self, search):
         start_urls = [f'https://www.avito.ru/rossiya?q={search}']
