@@ -26,6 +26,7 @@ class AvitoPhotosPipeline(ImagesPipeline):
             for img in item['photos']:
                 try:
 <<<<<<< HEAD
+<<<<<<< HEAD
                     yield scrapy.Request(img)
                 except Exception as e:
                     print(e)
@@ -34,6 +35,11 @@ class AvitoPhotosPipeline(ImagesPipeline):
         if results:
             item['photos'] = [itm[1] for itm in results if itm[0]]
         return item
+=======
+                    yield scrapy.Request(f'https:{img}')
+                except TypeError as e:
+                    print(e)
+>>>>>>> parent of d900147... Update pipelines.py
 =======
                     yield scrapy.Request(f'https:{img}')
                 except TypeError as e:
