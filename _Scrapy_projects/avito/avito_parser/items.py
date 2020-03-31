@@ -6,6 +6,13 @@
 # https://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy.loader.processors import MapCompose, TakeFirst
+
+
+def cleaner_photo(value):
+    if values[:2] == '//':
+        return f'http:{value}'
+    return value
 
 
 class AvitoParserItem(scrapy.Item):
