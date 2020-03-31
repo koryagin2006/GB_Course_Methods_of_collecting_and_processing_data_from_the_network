@@ -2,6 +2,7 @@
 import scrapy
 from scrapy.http import HtmlResponse
 from avito_parser.items import AvitoParserItem
+from scrapy.loader import ItemLoader
 
 
 class AvitoruSpider(scrapy.Spider):
@@ -18,7 +19,10 @@ class AvitoruSpider(scrapy.Spider):
             yield response.follow(link, callback=self.parse_ads)
 
     def parse_ads(self, response: HtmlResponse):
-        photos = response.xpath("//div[@class='gallery-img-wrapper js-gallery-img-wrapper']/div[1]/@data-url").extract()
-        name = response.xpath("//span[@class='title-info-title-text']/text()").extract_first()
-        # print(name, photos)
-        yield AvitoParserItem(name=name, photos=photos)
+        # photos = response.xpath("//div[@class='gallery-img-wrapper js-gallery-img-wrapper']/div[1]/@data-url").extract()
+        # name = response.xpath("//span[@class='title-info-title-text']/text()").extract_first()
+        # yield AvitoParserItem(name=name, photos=photos)
+        loader = ItemLoader(item=AvitoParserItem, response=response)
+        loader.add_xpath('photos', "//div[@class='gallery-img-wrapper js-gallery-img-wrapper']/div[1]/@data-url")
+        loader.add_xpath('name', "//span[@class='title-info-title-text']/text()")
+        yield loader.load_item()
