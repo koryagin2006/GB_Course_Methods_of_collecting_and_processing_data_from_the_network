@@ -23,6 +23,6 @@ class AvitoPhotosPipeline(ImagesPipeline):
                     print(e)
 
     def item_completed(self, results, item, info):
-        # if results:
-        # item['photos'] = [itm[1] for itm in results if itm[0]]
+        if results:
+            item['photos'] = [itm[1] for itm in results if itm[0]]
         return item
