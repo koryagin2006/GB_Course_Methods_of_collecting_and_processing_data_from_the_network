@@ -14,7 +14,9 @@ def cleaner_photo(value):
         return f'http:{value}'
     return value
 
+
 class AvitoParserItem(scrapy.Item):
     # define the fields for your item here like:
-    name = scrapy.Field()
-    photos = scrapy.Field()
+    _id = scrapy.Field()
+    name = scrapy.Field(output_processor=TakeFirst)
+    photos = scrapy.Field(input_processor=MapCompose(cleaner_photo))
