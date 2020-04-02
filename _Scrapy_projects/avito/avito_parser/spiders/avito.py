@@ -24,7 +24,7 @@ class AvitoSpider(scrapy.Spider):
         # name = response.xpath("//span[@class='title-info-title-text']/text()").extract_first()
         # print(name, photos)
         # yield AvitoParserItem(name=name, photos=photos)
-        loader = ItemLoader(item=AvitoParserItem, response=response)
+        loader = ItemLoader(item=AvitoParserItem(), response=response)
         loader.add_xpath('photos', "//div[@class='gallery-img-wrapper js-gallery-img-wrapper']/div/@data-url")
         loader.add_xpath('name', "//span[@class='title-info-title-text']/text()")
         yield loader.load_item()

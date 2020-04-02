@@ -18,11 +18,11 @@ class AvitoPhotosPipeline(ImagesPipeline):
         if item['photos']:
             for img in item['photos']:
                 try:
-                    yield scrapy.Request(f'http:{img}')
+                    yield scrapy.Request(img)
                 except TypeError as e:
                     print(e)
 
     def item_completed(self, results, item, info):
-        if results:
-            pass
+        # if results:
+        # item['photos'] = [itm[1] for itm in results if itm[0]]
         return item
