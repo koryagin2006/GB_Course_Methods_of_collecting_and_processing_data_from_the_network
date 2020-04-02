@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys  # Keys - объект, содержащий все клавиши клавиатуры
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import requests
+from lxml import html
 
 driver = webdriver.Chrome("C:\\Users\\carne\\Desktop\\Geek "
                           "Brains\\GitHub\\GB_Course_Methods_of_collecting_and_processing_data_from_the_network"
@@ -39,6 +41,14 @@ while True:
         break
         print('Парсинг окончен или ошибка: ', e)
 
-mail_list = driver.find_element_by_class_name('llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal')
+mail_first = driver.find_element_by_xpath("//div[@class='layout__main-frame']//a[1]")
+mail_first.click()
+
+mail_data = {}
+
+response = requests.get(driver).text
+tree = html.fromstring(response)
+mail_from = tree.xpath("//h2[@class='thread__subject']/text()")
+print(mail_from)
 
 # driver.quit()
