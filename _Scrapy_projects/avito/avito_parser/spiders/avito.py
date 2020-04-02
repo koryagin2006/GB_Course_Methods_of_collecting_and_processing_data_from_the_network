@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.http import HtmlResponse
+from avito_parser.items import AvitoParserItem
 
 
 class AvitoSpider(scrapy.Spider):
     name = 'avito'
     allowed_domains = ['avito.ru']
+
     # start_urls = ['-']
 
     def __init__(self, search):
@@ -20,3 +22,4 @@ class AvitoSpider(scrapy.Spider):
         photos = response.xpath("//div[@class='gallery-img-wrapper js-gallery-img-wrapper']/div/@data-url").extract()
         name = response.xpath("//span[@class='title-info-title-text']/text()").extract_first()
         print(name, photos)
+        yield AvitoParserItem(name=name, photos=photos)
