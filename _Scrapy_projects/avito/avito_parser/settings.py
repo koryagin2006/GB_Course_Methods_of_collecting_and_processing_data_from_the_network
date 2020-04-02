@@ -66,6 +66,8 @@ CONCURRENT_REQUESTS_PER_IP = 8
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+IMAGES_STORE = 'images'
+
 ITEM_PIPELINES = {
     'avito_parser.pipelines.DataBasePipeline': 300,
     'avito_parser.pipelines.AvitoPhotosPipeline': 200
