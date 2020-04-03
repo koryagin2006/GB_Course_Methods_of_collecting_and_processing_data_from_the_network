@@ -5,11 +5,18 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import scrapy
+from pymongo import MongoClient
 from scrapy.pipelines.images import ImagesPipeline
 
 
 class DataBasePipeline(object):
+    def __init__(self):
+        client = MongoClient('localhost', 27017)
+        self.mongo_base = client.avito_photo_305
+
     def process_item(self, item, spider):
+        collection = self.mongo_base[spider.name]
+        collection.insert_one(item)
         return item
 
 
@@ -24,5 +31,9 @@ class AvitoPhotosPipeline(ImagesPipeline):
 
     def item_completed(self, results, item, info):
         if results:
+            ## аналогично ниже
+            # for itm in results:
+            #     if itm[0]:
+            #         item['photos'] = itm[1]
             item['photos'] = [itm[1] for itm in results if itm[0]]
         return item

@@ -69,8 +69,8 @@ CONCURRENT_REQUESTS_PER_IP = 8
 IMAGES_STORE = 'images'
 
 ITEM_PIPELINES = {
+    'avito_parser.pipelines.AvitoPhotosPipeline': 200,
     'avito_parser.pipelines.DataBasePipeline': 300,
-    'avito_parser.pipelines.AvitoPhotosPipeline': 200
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
