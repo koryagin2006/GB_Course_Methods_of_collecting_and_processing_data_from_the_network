@@ -23,6 +23,14 @@ ROBOTSTXT_OBEY = False
 LOG_ENABLED = True
 LOG_LEVEL = 'DEBUG'
 
+IMAGES_STORE = 'images'
+IMAGES_THUMBS = {
+    'small': (50, 50),
+    'big': (270, 270),
+}
+
+
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
 
@@ -67,8 +75,10 @@ LOG_LEVEL = 'DEBUG'
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'leroymerlin_parser.pipelines.LeroymerlinParserPipeline': 300,
+    'leroymerlin_parser.pipelines.LeroymerlinParserPipeline': 200,
     'leroymerlin_parser.pipelines.DataBasePipeline': 400,
+    'leroymerlin_parser.pipelines.LeroyPhotosPipeline': 300,
+    # 'leroymerlin_parser.pipelines.MyImagesPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
