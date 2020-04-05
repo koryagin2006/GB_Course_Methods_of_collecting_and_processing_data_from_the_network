@@ -6,6 +6,11 @@ from selenium.webdriver.common.keys import Keys  # Keys - объект, соде
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+"""
+2) Написать программу, которая собирает «Хиты продаж» с сайта техники mvideo и складывает данные в БД. 
+Магазины можно выбрать свои. Главный критерий выбора: динамически загружаемые товары
+"""
+
 driver = webdriver.Chrome \
     (
         "C:\\Users\\carne\\Desktop\\Geek Brains\\GitHub\\GB_Course_Methods_of_collecting_and_processing_data_from_the_network\\Lesson_7 Selenium\\chromedriver")
