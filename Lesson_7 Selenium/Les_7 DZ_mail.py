@@ -1,16 +1,9 @@
-import time
-from pprint import pprint
-
 from pymongo import MongoClient
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys  # Keys - объект, содержащий все клавиши клавиатуры
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import requests
-from lxml import html
 
 """
 1) Написать программу, которая собирает входящие письма из своего или тестового почтового ящика и
