@@ -35,7 +35,6 @@ chrome_options.add_argument('start-maximized')
 driver = webdriver.Chrome("C:\\Users\\carne\\Desktop\\Geek "
                           "Brains\\GitHub\\GB_Course_Methods_of_collecting_and_processing_data_from_the_network"
                           "\\Lesson_7 Selenium\\chromedriver", options=chrome_options)
-
 driver.get('https://account.mail.ru/login')
 assert 'Авторизация' in driver.title
 
@@ -52,26 +51,37 @@ elem.send_keys(password)
 elem.send_keys(Keys.RETURN)
 
 # Первое письмо
-first_mail = driver.find_element_by_xpath("//div[@class='layout__main-frame']//a[1]")
-driver.get(first_mail.get_attribute("href"))
+first_mail = driver.find_element_by_xpath("//div[@class='layout__main-frame']//a[1]").get_attribute('href')
+driver.get(first_mail)
 
 driver.implicitly_wait(10)
 mail_data = {}
-mail_data['from'] = WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.CLASS_NAME, 'letter-contact'))).get_attribute('title')
-mail_data['date'] = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'letter__date'))).text
-mail_data['theme'] = WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.CLASS_NAME, 'thread__subject'))).text
-mail_data['mail_text'] = WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.CLASS_NAME, 'letter-body__body-content'))).text
+mail_data['from'] = driver.find_element_by_class_name('letter-contact').get_attribute('title')
+mail_data['date'] = driver.find_element_by_class_name('letter__date').text
+mail_data['theme'] = driver.find_element_by_class_name('thread__subject').text
+mail_data['mail_text'] = driver.find_element_by_class_name('letter-body__body-content').text
 collection.insert_one(mail_data)
 # pprint(mail_data)
+for i in range(10000):
+    print(f'Собрано писем: {i+1}')
+    # time.sleep(2)
+    driver.implicitly_wait(10)
+    webdriver.ActionChains(driver).key_down(Keys.CONTROL).send_keys(Keys.ARROW_DOWN).perform()
+    mail_data = {}
+    mail_data['from'] = driver.find_element_by_class_name('letter-contact').get_attribute('title')
+    try:
+        mail_data['date'] = driver.find_element_by_class_name('letter__date').text
+    except Exception as e:
+        mail_data['date'] = None
+    try:
+        mail_data['mail_text'] = driver.find_element_by_class_name('letter-body__body-content').text
+    except Exception as e:
+        mail_data['mail_text'] = None
+    collection.insert_one(mail_data)
+    if driver.find_element_by_xpath(
+            "//div[@class='portal-menu-element portal-menu-element_next portal-menu-element_expanded portal-menu-element_not-touch']/span"
+    ).get_attribute(
+        'class') == 'button2 button2_has-ico button2_arrow-down button2_pure button2_short button2_ico-text-top button2_hover-support button2_disabled js-shortcut':
+        break
 
-button = WebDriverWait(driver, 5).until(
-    EC.presence_of_element_located((By.XPATH, "//span[@title='Следующее']")))
-button.click()
-
-# while button.clic:
-#
-#
 # driver.quit()
