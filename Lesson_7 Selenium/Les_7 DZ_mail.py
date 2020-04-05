@@ -77,4 +77,4 @@ for i in range(10000):
         'class') == 'button2 button2_has-ico button2_arrow-down button2_pure button2_short button2_ico-text-top button2_hover-support button2_disabled js-shortcut':
         break
 
-# driver.quit()
+driver.quit()
